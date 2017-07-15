@@ -10,10 +10,10 @@ app.use(cors());
 var api = '/api/whoami';
 app.get(api, function(req, res, next){
   console.log('url works');
-  var language;
-  var software;
+  var language = req.acceptsLanguages();
+  var software = req.get('User-Agent');
   var ipaddress = req.ip;
-  res.json()
+  res.json({'ipaddress ': ipaddress, 'language ': language[0], 'software': software}, );
 });
 
 app.listen(3000, function(){
