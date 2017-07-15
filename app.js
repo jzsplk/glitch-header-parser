@@ -15,7 +15,8 @@ app.get(api, function(req, res, next){
   var language = req.acceptsLanguages();
   var software = 'OS: ' + req.useragent.os + ', Browser: ' + req.useragent.browser;
   var ipaddress = req.ip;
-  res.json({'ipaddress ': ipaddress, 'language ': language[0], 'software': software}, );
+  var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  res.json({'ipaddress ': ip, 'language ': language[0], 'software': software}, );
 });
 
 app.listen(3000, function(){
