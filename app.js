@@ -19,6 +19,10 @@ app.get(api, function(req, res, next){
   res.json({'ipaddress ': ip, 'language ': language[0], 'software': software}, );
 });
 
+app.get("/", function (request, response) {
+  response.sendFile(__dirname + '/views/index.html');
+});
+
 app.listen(3000, function(){
     console.log("It's working");
 });
